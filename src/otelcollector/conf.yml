@@ -11,10 +11,14 @@ exporters:
       insecure: true
   logging:
     loglevel: debug
+  otlp:
+    endpoint: appd-otel-collector:4317
+    tls:
+      insecure: true
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: []
-      exporters: [logging,jaeger]
+      exporters: [logging,otlp]
